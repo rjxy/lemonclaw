@@ -1,7 +1,7 @@
 # 🍋 LemonClaw
 
 <p align="center">
-  <img src="./public/logo.png" alt="LemonClaw" width="200">
+  <img src="./public/logo.png" alt="LemonClaw" width="300">
 </p>
 
 <p align="center">
