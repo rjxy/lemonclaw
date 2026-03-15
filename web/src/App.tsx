@@ -1,10 +1,8 @@
-import './App.css'
+import './App.css';
 
 function App() {
-  return (
-    <div>
-    </div>
-  )
+  const s = '1321';
+  return <div>Hello LemoClaw</div>;
 }
 
-export default App
+export default App;
