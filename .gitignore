@@ -72,10 +72,15 @@ tmp.*
 # Package manager locks (keep one, ignore others if using specific one)
 package-lock.json
 yarn.lock
-pnpm-lock.yaml
+# Keep root pnpm-lock.yaml for workspace, ignore sub-project ones
+web/pnpm-lock.yaml
+server/pnpm-lock.yaml
 
 # Secrets and credentials
 *.pem
 *.key
 secrets/
 credentials/
+
+# claude
+.claude/
