@@ -84,3 +84,4 @@ credentials/
 
 # claude
 .claude/
+CLAUDE.*
