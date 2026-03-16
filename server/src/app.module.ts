@@ -1,12 +1,9 @@
-import { Module } from '@nestjs/common';
+import { MiddlewareConsumer, Module, NestModule } from '@nestjs/common';
 import { ConfigModule } from '@nestjs/config';
-import { APP_FILTER, APP_INTERCEPTOR } from '@nestjs/core';
+import { APP_FILTER } from '@nestjs/core';
 
 import { HttpExceptionFilter } from './common/filters';
-import {
-  LoggingInterceptor,
-  TransformInterceptor,
-} from './common/interceptors';
+import { LoggingMiddleware } from './common/interceptors';
 import {
   aiConfig,
   appConfig,
@@ -49,16 +46,11 @@ import { DatabaseModule } from './shared/database';
       provide: APP_FILTER,
       useClass: HttpExceptionFilter,
     },
-    // 全局响应转换拦截器
-    {
-      provide: APP_INTERCEPTOR,
-      useClass: TransformInterceptor,
-    },
-    // 全局日志拦截器
-    {
-      provide: APP_INTERCEPTOR,
-      useClass: LoggingInterceptor,
-    },
   ],
 })
-export class AppModule {}
+export class AppModule implements NestModule {
+  configure(consumer: MiddlewareConsumer) {
+    // 全局日志中间件
+    consumer.apply(LoggingMiddleware).forRoutes('*');
+  }
+}

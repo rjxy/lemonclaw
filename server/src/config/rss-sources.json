@@ -1,0 +1,180 @@
+{
+  "sources": [
+    {
+      "id": "ruanyifeng",
+      "name": "阮一峰博客",
+      "url": "https://www.ruanyifeng.com/blog/atom.xml",
+      "category": "tech-cn",
+      "language": "zh",
+      "interval": 360,
+      "enabled": true,
+      "description": "科技爱好者周刊"
+    },
+    {
+      "id": "hn-best",
+      "name": "Hacker News Best",
+      "url": "https://hnrss.org/best",
+      "category": "tech",
+      "language": "en",
+      "interval": 60,
+      "enabled": true,
+      "description": "Hacker News 精选"
+    },
+    {
+      "id": "js-weekly",
+      "name": "JavaScript Weekly",
+      "url": "https://javascriptweekly.com/rss/",
+      "category": "frontend",
+      "language": "en",
+      "interval": 1440,
+      "enabled": true,
+      "description": "JavaScript 周刊"
+    },
+    {
+      "id": "react-status",
+      "name": "React Status",
+      "url": "https://react.statuscode.com/rss/",
+      "category": "frontend",
+      "language": "en",
+      "interval": 1440,
+      "enabled": true,
+      "description": "React 周刊"
+    },
+    {
+      "id": "node-weekly",
+      "name": "Node Weekly",
+      "url": "https://nodeweekly.com/rss/",
+      "category": "frontend",
+      "language": "en",
+      "interval": 1440,
+      "enabled": true,
+      "description": "Node.js 周刊"
+    },
+    {
+      "id": "frontend-focus",
+      "name": "Frontend Focus",
+      "url": "https://frontendfoc.us/rss/",
+      "category": "frontend",
+      "language": "en",
+      "interval": 1440,
+      "enabled": true,
+      "description": "前端聚焦周刊"
+    },
+    {
+      "id": "devto-frontend",
+      "name": "DEV.to Frontend",
+      "url": "https://dev.to/feed/tag/frontend",
+      "category": "frontend",
+      "language": "en",
+      "interval": 120,
+      "enabled": true,
+      "description": "DEV 社区前端文章"
+    },
+    {
+      "id": "devto-javascript",
+      "name": "DEV.to JavaScript",
+      "url": "https://dev.to/feed/tag/javascript",
+      "category": "frontend",
+      "language": "en",
+      "interval": 120,
+      "enabled": true,
+      "description": "DEV 社区 JavaScript 文章"
+    },
+    {
+      "id": "devto-react",
+      "name": "DEV.to React",
+      "url": "https://dev.to/feed/tag/react",
+      "category": "frontend",
+      "language": "en",
+      "interval": 120,
+      "enabled": true,
+      "description": "DEV 社区 React 文章"
+    },
+    {
+      "id": "devto-typescript",
+      "name": "DEV.to TypeScript",
+      "url": "https://dev.to/feed/tag/typescript",
+      "category": "frontend",
+      "language": "en",
+      "interval": 120,
+      "enabled": true,
+      "description": "DEV 社区 TypeScript 文章"
+    },
+    {
+      "id": "css-tricks",
+      "name": "CSS-Tricks",
+      "url": "https://css-tricks.com/feed/",
+      "category": "frontend",
+      "language": "en",
+      "interval": 240,
+      "enabled": true,
+      "description": "CSS 技巧与前端开发"
+    },
+    {
+      "id": "smashing",
+      "name": "Smashing Magazine",
+      "url": "https://www.smashingmagazine.com/feed/",
+      "category": "frontend",
+      "language": "en",
+      "interval": 480,
+      "enabled": true,
+      "description": "前端设计与开发"
+    },
+    {
+      "id": "lobsters",
+      "name": "Lobsters",
+      "url": "https://lobste.rs/rss",
+      "category": "tech",
+      "language": "en",
+      "interval": 60,
+      "enabled": true,
+      "description": "技术社区"
+    },
+    {
+      "id": "sspai",
+      "name": "少数派",
+      "url": "https://sspai.com/feed",
+      "category": "tech-cn",
+      "language": "zh",
+      "interval": 120,
+      "enabled": true,
+      "description": "数码与效率"
+    },
+    {
+      "id": "infoq-cn",
+      "name": "InfoQ 中文",
+      "url": "https://www.infoq.cn/feed",
+      "category": "tech-cn",
+      "language": "zh",
+      "interval": 120,
+      "enabled": true,
+      "description": "技术资讯"
+    },
+    {
+      "id": "devto-ai",
+      "name": "DEV.to AI",
+      "url": "https://dev.to/feed/tag/ai",
+      "category": "ai",
+      "language": "en",
+      "interval": 120,
+      "enabled": true,
+      "description": "DEV 社区 AI 文章"
+    },
+    {
+      "id": "huggingface",
+      "name": "Hugging Face Blog",
+      "url": "https://huggingface.co/blog/feed.xml",
+      "category": "ai",
+      "language": "en",
+      "interval": 480,
+      "enabled": true,
+      "description": "Hugging Face 官方博客"
+    }
+  ],
+  "categories": [
+    { "id": "frontend", "name": "前端开发", "color": "#61dafb" },
+    { "id": "tech", "name": "综合技术", "color": "#f59e0b" },
+    { "id": "tech-cn", "name": "中文技术", "color": "#10b981" },
+    { "id": "ai", "name": "AI/LLM", "color": "#8b5cf6" }
+  ]
+}

@@ -1,30 +1,23 @@
-import {
-  CallHandler,
-  ExecutionContext,
-  Injectable,
-  Logger,
-  NestInterceptor,
-} from '@nestjs/common';
-import { Observable, tap } from 'rxjs';
+import { Injectable, Logger, NestMiddleware } from '@nestjs/common';
+import { Request, Response, NextFunction } from 'express';
 
 /**
- * 日志拦截器
+ * 日志中间件
  * 记录请求耗时和基本信息
  */
 @Injectable()
-export class LoggingInterceptor implements NestInterceptor {
-  private readonly logger = new Logger(LoggingInterceptor.name);
+export class LoggingMiddleware implements NestMiddleware {
+  private readonly logger = new Logger(LoggingMiddleware.name);
 
-  intercept(context: ExecutionContext, next: CallHandler): Observable<any> {
-    const request = context.switchToHttp().getRequest();
-    const { method, url } = request;
+  use(req: Request, res: Response, next: NextFunction): void {
+    const { method, url } = req;
     const startTime = Date.now();
 
-    return next.handle().pipe(
-      tap(() => {
-        const duration = Date.now() - startTime;
-        this.logger.log(`${method} ${url} - ${duration}ms`);
-      }),
-    );
+    res.on('finish', () => {
+      const duration = Date.now() - startTime;
+      this.logger.log(`${method} ${url} - ${duration}ms`);
+    });
+
+    next();
   }
 }
