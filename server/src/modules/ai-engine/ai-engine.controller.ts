@@ -1,12 +1,12 @@
 import { Body, Controller, Get, Post } from '@nestjs/common';
 
-import { ResponseMessage } from '../../../common/decorators';
 import {
   IntentParserService,
   ModelFactory,
   ModelProvider,
   SummaryService,
 } from './services';
+import { ResponseMessage } from '../../common/decorators';
 
 @Controller('ai')
 export class AiEngineController {
