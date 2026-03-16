@@ -41,7 +41,9 @@ export class ContentExtractor {
     const $ = cheerio.load(html);
 
     // 移除无用元素
-    $('script, style, nav, header, footer, aside, .ad, .advertisement').remove();
+    $(
+      'script, style, nav, header, footer, aside, .ad, .advertisement',
+    ).remove();
 
     const title = $('title').text().trim() || $('h1').first().text().trim();
     const content =

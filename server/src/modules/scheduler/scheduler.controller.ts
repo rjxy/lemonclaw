@@ -8,9 +8,9 @@ import {
   Put,
 } from '@nestjs/common';
 
-import { ResponseMessage } from '../../../common/decorators';
-import { TimeParser } from '../../../common/utils';
 import { DynamicSchedulerService } from './services';
+import { ResponseMessage } from '../../common/decorators';
+import { TimeParser } from '../../common/utils';
 
 @Controller('scheduler')
 export class SchedulerController {

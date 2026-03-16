@@ -22,9 +22,10 @@ export interface ApiResponse<T> {
  * 统一包装所有响应为标准格式
  */
 @Injectable()
-export class TransformInterceptor<T>
-  implements NestInterceptor<T, ApiResponse<T>>
-{
+export class TransformInterceptor<T> implements NestInterceptor<
+  T,
+  ApiResponse<T>
+> {
   constructor(private reflector: Reflector) {}
 
   intercept(

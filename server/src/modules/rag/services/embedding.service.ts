@@ -1,7 +1,7 @@
+import { Embeddings } from '@langchain/core/embeddings';
+import { OpenAIEmbeddings } from '@langchain/openai';
 import { Injectable, Logger } from '@nestjs/common';
 import { ConfigService } from '@nestjs/config';
-import { OpenAIEmbeddings } from '@langchain/openai';
-import { Embeddings } from '@langchain/core/embeddings';
 
 /**
  * Embedding 服务

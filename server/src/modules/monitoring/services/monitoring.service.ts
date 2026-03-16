@@ -34,12 +34,13 @@ export class MonitoringService {
   private readonly logger = new Logger(MonitoringService.name);
 
   // 模型定价（每 1K token，美元）
-  private readonly pricing: Record<string, { input: number; output: number }> = {
-    'deepseek-chat': { input: 0.0001, output: 0.0002 },
-    'qwen-turbo': { input: 0.0003, output: 0.0006 },
-    'gpt-4o-mini': { input: 0.00015, output: 0.0006 },
-    'gpt-4o': { input: 0.005, output: 0.015 },
-  };
+  private readonly pricing: Record<string, { input: number; output: number }> =
+    {
+      'deepseek-chat': { input: 0.0001, output: 0.0002 },
+      'qwen-turbo': { input: 0.0003, output: 0.0006 },
+      'gpt-4o-mini': { input: 0.00015, output: 0.0006 },
+      'gpt-4o': { input: 0.005, output: 0.015 },
+    };
 
   constructor(
     @InjectRepository(ApiCallLog)
@@ -108,7 +109,8 @@ export class MonitoringService {
         stats.byProvider[log.provider] = { calls: 0, tokens: 0, cost: 0 };
       }
       stats.byProvider[log.provider].calls++;
-      stats.byProvider[log.provider].tokens += log.inputTokens + log.outputTokens;
+      stats.byProvider[log.provider].tokens +=
+        log.inputTokens + log.outputTokens;
       stats.byProvider[log.provider].cost += Number(log.cost);
     }
 

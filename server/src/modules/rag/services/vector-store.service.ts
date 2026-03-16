@@ -1,7 +1,7 @@
-import { Injectable, Logger } from '@nestjs/common';
-import { ConfigService } from '@nestjs/config';
 import { Chroma } from '@langchain/community/vectorstores/chroma';
 import { Document } from '@langchain/core/documents';
+import { Injectable, Logger } from '@nestjs/common';
+import { ConfigService } from '@nestjs/config';
 
 import { EmbeddingService } from './embedding.service';
 
@@ -65,7 +65,9 @@ export class VectorStoreService {
   async search(
     query: string,
     topK: number = 5,
-  ): Promise<{ content: string; metadata: Record<string, any>; score: number }[]> {
+  ): Promise<
+    { content: string; metadata: Record<string, any>; score: number }[]
+  > {
     try {
       const store = await this.getStore();
       const results = await store.similaritySearchWithScore(query, topK);

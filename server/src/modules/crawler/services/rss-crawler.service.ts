@@ -52,7 +52,9 @@ export class RssCrawlerService {
       source.lastFetchedAt = new Date();
       await this.rssSourceRepo.save(source);
 
-      this.logger.log(`抓取完成: ${source.name}, 新增 ${articles.length} 篇文章`);
+      this.logger.log(
+        `抓取完成: ${source.name}, 新增 ${articles.length} 篇文章`,
+      );
       return articles;
     } catch (error) {
       this.logger.error(`抓取失败: ${source.name}`, error);

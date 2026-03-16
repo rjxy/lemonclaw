@@ -1,9 +1,9 @@
-import { Injectable, Logger } from '@nestjs/common';
-import { PromptTemplate } from '@langchain/core/prompts';
 import { StringOutputParser } from '@langchain/core/output_parsers';
+import { PromptTemplate } from '@langchain/core/prompts';
+import { Injectable, Logger } from '@nestjs/common';
 
-import { ModelFactory } from '../../ai-engine/services';
 import { VectorStoreService } from './vector-store.service';
+import { ModelFactory } from '../../ai-engine/services';
 
 /**
  * RAG 问答服务

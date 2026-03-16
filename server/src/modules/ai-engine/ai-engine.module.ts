@@ -1,11 +1,7 @@
 import { Module } from '@nestjs/common';
 
 import { AiEngineController } from './ai-engine.controller';
-import {
-  IntentParserService,
-  ModelFactory,
-  SummaryService,
-} from './services';
+import { IntentParserService, ModelFactory, SummaryService } from './services';
 
 @Module({
   controllers: [AiEngineController],

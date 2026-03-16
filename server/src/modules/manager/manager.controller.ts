@@ -1,7 +1,7 @@
 import { Controller, Get } from '@nestjs/common';
 
-import { ResponseMessage } from '../../../common/decorators';
 import { ModelFactory, ModelProvider } from '../../ai-engine/services';
+import { ResponseMessage } from '../../common/decorators';
 import { MonitoringService } from '../../monitoring/services';
 import { DynamicSchedulerService } from '../../scheduler/services';
 
@@ -42,8 +42,16 @@ export class ManagerController {
   @Get('models')
   @ResponseMessage('获取模型列表成功')
   getAvailableModels() {
-    const models: { provider: ModelProvider; name: string; description: string }[] = [
-      { provider: 'deepseek', name: 'DeepSeek', description: '高性价比国产模型' },
+    const models: {
+      provider: ModelProvider;
+      name: string;
+      description: string;
+    }[] = [
+      {
+        provider: 'deepseek',
+        name: 'DeepSeek',
+        description: '高性价比国产模型',
+      },
       { provider: 'qwen', name: '通义千问', description: '阿里云大模型' },
       { provider: 'openai', name: 'OpenAI GPT', description: 'GPT 系列模型' },
       { provider: 'local', name: '本地模型', description: 'Ollama 本地部署' },

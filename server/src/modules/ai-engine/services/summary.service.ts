@@ -1,6 +1,6 @@
-import { Injectable, Logger } from '@nestjs/common';
-import { PromptTemplate } from '@langchain/core/prompts';
 import { StringOutputParser } from '@langchain/core/output_parsers';
+import { PromptTemplate } from '@langchain/core/prompts';
+import { Injectable, Logger } from '@nestjs/common';
 
 import { ModelFactory } from './model-factory.service';
 
@@ -35,7 +35,9 @@ export class SummaryService {
   async summarize(content: string): Promise<string> {
     try {
       const model = this.modelFactory.getModel();
-      const chain = this.summaryPrompt.pipe(model).pipe(new StringOutputParser());
+      const chain = this.summaryPrompt
+        .pipe(model)
+        .pipe(new StringOutputParser());
 
       const summary = await chain.invoke({ content });
       return summary.trim();

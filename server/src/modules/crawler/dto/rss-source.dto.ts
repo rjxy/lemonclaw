@@ -1,4 +1,10 @@
-import { IsBoolean, IsNumber, IsOptional, IsString, IsUrl } from 'class-validator';
+import {
+  IsBoolean,
+  IsNumber,
+  IsOptional,
+  IsString,
+  IsUrl,
+} from 'class-validator';
 
 /**
  * 创建 RSS 源 DTO

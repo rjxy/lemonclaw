@@ -1,7 +1,7 @@
 import { Body, Controller, Post } from '@nestjs/common';
 
-import { ResponseMessage } from '../../../common/decorators';
 import { QaService, VectorStoreService } from './services';
+import { ResponseMessage } from '../../common/decorators';
 
 @Controller('rag')
 export class RagController {

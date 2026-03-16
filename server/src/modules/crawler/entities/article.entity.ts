@@ -1,7 +1,7 @@
 import { Column, Entity, ManyToOne } from 'typeorm';
 
-import { BaseEntity } from '../../../shared/entities';
 import { RssSource } from './rss-source.entity';
+import { BaseEntity } from '../../../shared/entities';
 
 /**
  * 资讯文章实体

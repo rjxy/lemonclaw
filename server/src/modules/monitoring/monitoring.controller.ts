@@ -1,7 +1,7 @@
 import { Controller, Get, Query } from '@nestjs/common';
 
-import { ResponseMessage } from '../../../common/decorators';
 import { MonitoringService } from './services';
+import { ResponseMessage } from '../../common/decorators';
 
 @Controller('monitoring')
 export class MonitoringController {

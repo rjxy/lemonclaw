@@ -1,6 +1,6 @@
-import { Injectable, Logger } from '@nestjs/common';
-import { PromptTemplate } from '@langchain/core/prompts';
 import { JsonOutputParser } from '@langchain/core/output_parsers';
+import { PromptTemplate } from '@langchain/core/prompts';
+import { Injectable, Logger } from '@nestjs/common';
 
 import { ModelFactory } from './model-factory.service';
 

@@ -19,7 +19,13 @@ export class ApiCallLog extends BaseEntity {
   @Column({ name: 'output_tokens', default: 0, comment: '输出 Token 数' })
   outputTokens: number;
 
-  @Column({ type: 'decimal', precision: 10, scale: 6, default: 0, comment: '费用（美元）' })
+  @Column({
+    type: 'decimal',
+    precision: 10,
+    scale: 6,
+    default: 0,
+    comment: '费用（美元）',
+  })
   cost: number;
 
   @Column({ name: 'duration_ms', default: 0, comment: '响应耗时（毫秒）' })

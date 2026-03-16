@@ -1,7 +1,7 @@
+import { BaseChatModel } from '@langchain/core/language_models/chat_models';
+import { ChatOpenAI } from '@langchain/openai';
 import { Injectable, Logger } from '@nestjs/common';
 import { ConfigService } from '@nestjs/config';
-import { ChatOpenAI } from '@langchain/openai';
-import { BaseChatModel } from '@langchain/core/language_models/chat_models';
 
 /**
  * 模型提供商类型
