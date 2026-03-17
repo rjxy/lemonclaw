@@ -14,9 +14,6 @@ export class Article extends BaseEntity {
   @Column({ unique: true, comment: '原文链接' })
   link: string;
 
-  @Column({ type: 'text', nullable: true, comment: '文章摘要' })
-  summary: string;
-
   @Column({ type: 'text', nullable: true, comment: '原文内容' })
   content: string;
 

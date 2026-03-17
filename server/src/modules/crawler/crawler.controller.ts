@@ -98,11 +98,11 @@ export class CrawlerController {
     return { count: sources.length, sources: sources.map((s) => s.name) };
   }
 
-  @Post('test-fetch')
+  @Post('test-fetch/:sourceId')
   @ResponseMessage('测试抓取完成')
-  async testFetch() {
+  async testFetch(@Param('sourceId') sourceId: number) {
     // 限制只抓取 3 篇文章，输出到测试文档
-    const result = await this.rssCrawlerService.testFetch(undefined, 3);
+    const result = await this.rssCrawlerService.testFetch(sourceId, 3);
     return {
       count: result.articles.length,
       outputPath: result.outputPath,
@@ -111,5 +111,22 @@ export class CrawlerController {
         link: a.link,
       })),
     };
+  }
+
+  // ============ 数据清理 ============
+
+  @Post('articles/clear')
+  @ResponseMessage('清空所有文章成功')
+  async clearAllArticles() {
+    const count = await this.articleRepo.count();
+    await this.articleRepo.clear();
+    return { deletedCount: count };
+  }
+
+  @Post('articles/clear/source/:sourceId')
+  @ResponseMessage('清空指定源文章成功')
+  async clearArticlesBySource(@Param('sourceId') sourceId: number) {
+    const result = await this.articleRepo.delete({ source: { id: sourceId } });
+    return { deletedCount: result.affected || 0 };
   }
 }

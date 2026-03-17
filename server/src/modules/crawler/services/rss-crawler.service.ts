@@ -44,7 +44,7 @@ export class RssCrawlerService {
         const article = this.articleRepo.create({
           title: item.title || '无标题',
           link: item.link || '',
-          summary: item.contentSnippet || item.summary || '',
+          content: item.contentSnippet || item.content || item.summary || '',
           publishedAt: item.pubDate ? new Date(item.pubDate) : new Date(),
           source,
         });
@@ -175,7 +175,7 @@ export class RssCrawlerService {
       const article = this.articleRepo.create({
         title: item.title || '无标题',
         link: item.link || '',
-        summary: item.contentSnippet || item.summary || '',
+        content: item.contentSnippet || item.content || item.summary || '',
         publishedAt: item.pubDate ? new Date(item.pubDate) : new Date(),
         source,
       });
@@ -233,9 +233,9 @@ export class RssCrawlerService {
         `- **发布时间**: ${article.publishedAt?.toLocaleString('zh-CN') || '未知'}`,
       );
       lines.push('');
-      lines.push('### 摘要');
+      lines.push('### 内容');
       lines.push('');
-      lines.push(article.summary || '（无摘要）');
+      lines.push(article.content || '（无内容）');
       lines.push('');
       lines.push('---');
       lines.push('');
