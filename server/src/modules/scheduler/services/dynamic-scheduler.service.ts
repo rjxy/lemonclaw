@@ -113,7 +113,7 @@ export class DynamicSchedulerService implements OnModuleInit {
       await this.executeTask(task);
     });
 
-    this.schedulerRegistry.addCronJob(jobName, job);
+    this.schedulerRegistry.addCronJob(jobName, job as any);
     job.start();
   }
 

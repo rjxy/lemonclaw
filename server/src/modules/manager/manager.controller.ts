@@ -1,9 +1,9 @@
 import { Controller, Get } from '@nestjs/common';
 
-import { ModelFactory, ModelProvider } from '../../ai-engine/services';
 import { ResponseMessage } from '../../common/decorators';
-import { MonitoringService } from '../../monitoring/services';
-import { DynamicSchedulerService } from '../../scheduler/services';
+import { ModelFactory, ModelProvider } from '../ai-engine/services';
+import { MonitoringService } from '../monitoring/services';
+import { DynamicSchedulerService } from '../scheduler/services';
 
 /**
  * 管理后台控制器

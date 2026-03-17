@@ -2,7 +2,7 @@ import { Body, Controller, Post } from '@nestjs/common';
 
 import { FeishuBotService } from './services';
 import { ResponseMessage } from '../../common/decorators';
-import { QaService } from '../../rag/services';
+import { QaService } from '../rag/services';
 
 /**
  * 飞书控制器

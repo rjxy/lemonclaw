@@ -88,4 +88,28 @@ export class CrawlerController {
     const articles = await this.rssCrawlerService.fetchSource(source);
     return { count: articles.length };
   }
+
+  // ============ 初始化与测试 ============
+
+  @Post('init-sources')
+  @ResponseMessage('从配置初始化 RSS 源完成')
+  async initSources() {
+    const sources = await this.rssCrawlerService.initSourcesFromConfig();
+    return { count: sources.length, sources: sources.map((s) => s.name) };
+  }
+
+  @Post('test-fetch')
+  @ResponseMessage('测试抓取完成')
+  async testFetch() {
+    // 限制只抓取 3 篇文章，输出到测试文档
+    const result = await this.rssCrawlerService.testFetch(undefined, 3);
+    return {
+      count: result.articles.length,
+      outputPath: result.outputPath,
+      articles: result.articles.map((a) => ({
+        title: a.title,
+        link: a.link,
+      })),
+    };
+  }
 }
