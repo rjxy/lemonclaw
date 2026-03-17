@@ -16,7 +16,14 @@ import { Article, RssSource } from '../entities';
 @Injectable()
 export class RssCrawlerService {
   private readonly logger = new Logger(RssCrawlerService.name);
-  private readonly parser = new Parser();
+  // 配置 rss-parser 解析 content:encoded 字段
+  private readonly parser = new Parser({
+    customFields: {
+      item: [
+        ['content:encoded', 'contentEncoded'], // 映射 content:encoded 到 contentEncoded
+      ],
+    },
+  });
 
   constructor(
     @InjectRepository(RssSource)
@@ -44,7 +51,8 @@ export class RssCrawlerService {
         const article = this.articleRepo.create({
           title: item.title || '无标题',
           link: item.link || '',
-          content: item.contentSnippet || item.content || item.summary || '',
+          // 优先使用 content:encoded（完整原文），其次 content，最后 contentSnippet（摘要）
+          content: (item as any).contentEncoded || item.content || item.contentSnippet || item.summary || '',
           publishedAt: item.pubDate ? new Date(item.pubDate) : new Date(),
           source,
         });
@@ -175,7 +183,8 @@ export class RssCrawlerService {
       const article = this.articleRepo.create({
         title: item.title || '无标题',
         link: item.link || '',
-        content: item.contentSnippet || item.content || item.summary || '',
+        // 优先使用 content:encoded（完整原文），其次 content，最后 contentSnippet（摘要）
+          content: (item as any).contentEncoded || item.content || item.contentSnippet || item.summary || '',
         publishedAt: item.pubDate ? new Date(item.pubDate) : new Date(),
         source,
       });
