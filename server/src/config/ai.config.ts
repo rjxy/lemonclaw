@@ -98,7 +98,7 @@ export default registerAs('ai', () => ({
    * 可选值：'deepseek' | 'qwen' | 'openai' | 'local'
    * 默认：'deepseek'
    */
-  provider: process.env.AI_PROVIDER || 'deepseek',
+  provider: process.env.AI_PROVIDER || 'qwen',
 
   /**
    * DeepSeek 配置
@@ -125,7 +125,7 @@ export default registerAs('ai', () => ({
     /** API 基础地址（兼容 OpenAI 格式） */
     baseUrl: process.env.QWEN_BASE_URL,
     /** 模型名称：qwen-turbo / qwen-plus / qwen-max */
-    model: process.env.QWEN_MODEL,
+    model: process.env.QWEN_MODEL || 'qwen-plus',
   },
 
   /**
