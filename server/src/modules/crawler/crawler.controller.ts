@@ -14,6 +14,7 @@ import { CreateRssSourceDto, UpdateRssSourceDto } from './dto';
 import { Article, RssSource } from './entities';
 import { RssCrawlerService } from './services';
 import { ResponseMessage } from '../../common/decorators';
+import { SummaryService } from '../ai-engine/services';
 
 /**
  * 资讯抓取控制器
@@ -26,6 +27,7 @@ export class CrawlerController {
     @InjectRepository(Article)
     private articleRepo: Repository<Article>,
     private rssCrawlerService: RssCrawlerService,
+    private summaryService: SummaryService,
   ) {}
 
   // ============ RSS 源管理 ============
@@ -128,5 +130,62 @@ export class CrawlerController {
   async clearArticlesBySource(@Param('sourceId') sourceId: number) {
     const result = await this.articleRepo.delete({ source: { id: sourceId } });
     return { deletedCount: result.affected || 0 };
+  }
+
+  // ============ 抓取+总结 测试 ============
+
+  /**
+   * 测试最小流程：抓取一篇文章 -> AI 总结 -> 返回结果
+   */
+  @Post('test-summarize/:articleId')
+  @ResponseMessage('文章总结完成')
+  async testSummarize(@Param('articleId') articleId: number) {
+    const article = await this.articleRepo.findOne({
+      where: { id: articleId },
+      relations: ['source'],
+    });
+    if (!article) {
+      return { error: '文章不存在' };
+    }
+
+    const summary = await this.summaryService.summarize(article.content);
+    return {
+      article: {
+        id: article.id,
+        title: article.title,
+        link: article.link,
+        contentLength: article.content.length,
+      },
+      summary,
+    };
+  }
+
+  /**
+   * 一键测试：抓取最新一篇 -> AI 总结
+   */
+  @Post('test-flow')
+  @ResponseMessage('抓取并总结完成')
+  async testFlow() {
+    // 获取最新一篇文章
+    const article = await this.articleRepo.findOne({
+      where: {},
+      order: { publishedAt: 'DESC' },
+      relations: ['source'],
+    });
+    if (!article) {
+      return { error: '没有文章，请先执行抓取' };
+    }
+
+    const summary = await this.summaryService.summarize(article.content);
+    return {
+      article: {
+        id: article.id,
+        title: article.title,
+        link: article.link,
+        source: article.source?.name,
+        contentPreview: article.content.slice(0, 200) + '...',
+      },
+      summary,
+    };
   }
 }
