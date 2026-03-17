@@ -29,6 +29,7 @@
     "@nestjs/platform-express": "^11.0.1",
     "@nestjs/schedule": "^4.1.0",
     "@nestjs/typeorm": "^10.0.2",
+    "better-sqlite3": "^12.8.0",
     "cheerio": "^1.0.0",
     "chrono-node": "^2.7.0",
     "class-transformer": "^0.5.1",
@@ -37,7 +38,6 @@
     "jsdom": "^24.0.0",
     "reflect-metadata": "^0.2.2",
     "rss-parser": "^3.13.0",
-    "sqlite3": "^5.1.7",
     "typeorm": "^0.3.20",
     "youtube-transcript": "^1.2.1"
   },
@@ -46,6 +46,7 @@
     "@nestjs/cli": "^11.0.0",
     "@nestjs/schematics": "^11.0.0",
     "@nestjs/testing": "^11.0.1",
+    "@types/better-sqlite3": "^7.6.13",
     "@types/express": "^5.0.0",
     "@types/jest": "^30.0.0",
     "@types/jsdom": "^21.1.0",
