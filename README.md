@@ -28,7 +28,7 @@
 
 前端界面: react
 后端服务: nestjs
-数据库: typeorm + sqlite
+数据库: typeorm + mysql
 AI调用: langchain
 
 

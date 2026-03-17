@@ -87,6 +87,3 @@ credentials/
 .claude/
 CLAUDE.*
 docs/
-
-# db
-server/data/*.db
