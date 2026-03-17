@@ -73,6 +73,7 @@ export class SummaryService {
         .pipe(model)
         .pipe(new StringOutputParser());
 
+      // TODO: 目前是等所有回答回来一起输出的, 可以改成流式? 给监控前端
       // 执行链并返回结果
       const summary = await chain.invoke({ content });
       return summary.trim();

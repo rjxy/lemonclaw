@@ -1,4 +1,5 @@
-import { Body, Controller, Get, Post } from '@nestjs/common';
+import { Body, Controller, Get, Post, Res } from '@nestjs/common';
+import { Response } from 'express';
 
 import {
   IntentParserService,
@@ -83,5 +84,42 @@ export class AiEngineController {
   @ResponseMessage('解析意图成功')
   async parseIntent(@Body('input') input: string) {
     return this.intentParserService.parse(input);
+  }
+
+  /**
+   * 简单对话测试接口（流式输出）
+   *
+   * 用于测试模型连通性，使用 SSE 流式返回回复
+   *  用浏览器/curl 测试（推荐）
+
+    curl -X POST http://localhost:3300/ai/chat \
+      -H "Content-Type: application/json" \
+      -d '{"message": "hello"}' \
+      --no-buffer
+   *
+   * @param message - 用户消息
+   * @param res - Express Response 对象
+   */
+  @Post('chat')
+  async chat(@Body('message') message: string, @Res() res: Response) {
+    // 设置 SSE 响应头
+    res.setHeader('Content-Type', 'text/event-stream');
+    res.setHeader('Cache-Control', 'no-cache');
+    res.setHeader('Connection', 'keep-alive');
+
+    const model = this.modelFactory.getModel();
+    const stream = await model.stream(message);
+
+    // 流式输出每个 chunk
+    for await (const chunk of stream) {
+      const content = chunk.content;
+      if (content) {
+        res.write(`data: ${JSON.stringify({ content })}\n\n`);
+      }
+    }
+
+    // 发送结束标记
+    res.write('data: [DONE]\n\n');
+    res.end();
   }
 }

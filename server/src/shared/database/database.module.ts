@@ -20,7 +20,9 @@ import { TypeOrmModule } from '@nestjs/typeorm';
         password: configService.get<string>('database.password'),
         database: configService.get<string>('database.database'),
         synchronize: configService.get<boolean>('database.synchronize'),
-        logging: configService.get<boolean>('database.logging'),
+        // logging: configService.get<boolean>('database.logging'),
+        // 避免控制台太多sql
+        logging: false,
         charset: configService.get<string>('database.charset'),
         autoLoadEntities: true, // 自动加载所有模块注册的实体
       }),
