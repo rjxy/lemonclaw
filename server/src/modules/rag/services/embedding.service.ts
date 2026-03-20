@@ -49,13 +49,30 @@ export class EmbeddingService {
   }
 
   private createEmbeddings(): Embeddings {
-    const provider = this.configService.get('ai.embedding.provider', 'openai');
+    const provider = this.configService.get('ai.embedding.provider', 'qwen');
     const model = this.configService.get(
       'ai.embedding.model',
-      'text-embedding-3-small',
+      'text-embedding-v3',
     );
 
-    // 根据当前 AI 提供商配置 Embedding
+    this.logger.log(`初始化 Embedding: provider=${provider}, model=${model}`);
+
+    // 根据 embedding provider 选择 API 配置
+    if (provider === 'qwen') {
+      // 阿里 DashScope 兼容 OpenAI 格式
+      const qwenConfig = this.configService.get('ai.qwen');
+      return new OpenAIEmbeddings({
+        modelName: model,
+        openAIApiKey: qwenConfig?.apiKey,
+        configuration: {
+          baseURL:
+            qwenConfig?.baseUrl ||
+            'https://dashscope.aliyuncs.com/compatible-mode/v1',
+        },
+      });
+    }
+
+    // OpenAI / 其他兼容提供商
     const aiProvider = this.configService.get('ai.provider', 'openai');
     const config = this.configService.get(`ai.${aiProvider}`);
 

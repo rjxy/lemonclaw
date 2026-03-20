@@ -44,9 +44,9 @@ export default registerAs('ai', () => ({
     model: process.env.LOCAL_MODEL || 'llama3',
   },
   embedding: {
-    /** 向量化服务提供商：openai / local */
-    provider: process.env.EMBEDDING_PROVIDER || 'openai',
-    /** 向量化模型：text-embedding-3-small / text-embedding-ada-002 */
-    model: process.env.EMBEDDING_MODEL || 'text-embedding-3-small',
+    /** 向量化服务提供商：qwen / openai / local */
+    provider: process.env.EMBEDDING_PROVIDER || 'qwen',
+    /** 向量化模型：text-embedding-v3（阿里）/ text-embedding-3-small（OpenAI） */
+    model: process.env.EMBEDDING_MODEL || 'text-embedding-v3',
   },
 }));
